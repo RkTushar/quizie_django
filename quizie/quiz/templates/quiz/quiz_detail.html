@@ -2,27 +2,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ quiz.title }}</title>
+    <title>{{ quiz.title }} - Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .quiz-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .question:last-child {
+            border-bottom: none;
+        }
+        .question-text {
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .choices {
+            list-style: none;
+            padding: 0;
+        }
+        .choice {
+            margin-bottom: 10px;
+        }
+        .choice label {
+            display: block;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .choice label:hover {
+            background: #e9ecef;
+        }
+        .submit-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #2c3e50;
+        }
+    </style>
 </head>
 <body>
     <h1>{{ quiz.title }}</h1>
-    <p>{{ quiz.description }}</p>
-
-    <form method="post">
-        {% csrf_token %}
-        {% for question in questions %}
-            <div>
-                <strong>{{ forloop.counter }}. {{ question.text }}</strong><br>
-                {% for choice in question.choices.all %}
-                    <label>
-                        <input type="radio" name="{{ question.id }}" value="{{ choice.id }}">
-                        {{ choice.text }}
-                    </label><br>
-                {% endfor %}
-            </div>
-            <br>
-        {% endfor %}
-        <button type="submit">Submit</button>
-    </form>
+    <div class="quiz-container">
+        <form method="post">
+            {% csrf_token %}
+            {% for question in questions %}
+                <div class="question">
+                    <p class="question-text">{{ forloop.counter }}. {{ question.text }}</p>
+                    <ul class="choices">
+                        {% for choice in question.choices.all %}
+                            <li class="choice">
+                                <label>
+                                    <input type="radio" name="{{ question.id }}" value="{{ choice.id }}" required>
+                                    {{ choice.text }}
+                                </label>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Submit Quiz</button>
+        </form>
+    </div>
+    <a href="{% url 'quiz_list' %}" class="back-link">← Back to Quiz List</a>
 </body>
 </html>
