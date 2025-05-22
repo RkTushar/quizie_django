@@ -5,47 +5,86 @@
     <title>Quiz Results</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: #f0f2f5;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #3498db;
+            margin: 0;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .logo span {
+            color: #2c3e50;
+        }
+        .logo-icon {
+            font-size: 1.2em;
+            margin-right: 10px;
         }
         .result-container {
             background: white;
-            border-radius: 8px;
-            padding: 30px;
+            border-radius: 12px;
+            padding: 40px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         h1 {
             color: #2c3e50;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 2em;
         }
         .score {
-            font-size: 2em;
+            font-size: 3em;
             color: #3498db;
             margin: 20px 0;
+            font-weight: bold;
         }
         .total {
             color: #7f8c8d;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            font-size: 1.2em;
         }
         .back-link {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 30px;
             background-color: #3498db;
             color: white;
             text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
         }
         .back-link:hover {
             background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 768px) {
+            .result-container {
+                padding: 30px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <a href="{% url 'quiz_list' %}" class="logo">
+            <span class="logo-icon">📚</span>Quiz<span>Master</span>
+        </a>
+    </div>
     <div class="result-container">
         <h1>Quiz Results</h1>
         <div class="score">{{ score }}</div>
