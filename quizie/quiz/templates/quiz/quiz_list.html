@@ -5,58 +5,110 @@
     <title>Quiz List</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: #f0f2f5;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #3498db;
+            margin: 0;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .logo span {
+            color: #2c3e50;
+        }
+        .logo-icon {
+            font-size: 1.2em;
+            margin-right: 10px;
         }
         h1 {
-            color: #333;
+            color: #2c3e50;
             text-align: center;
-            margin-bottom: 30px;
+            margin: 20px 0;
+            font-size: 1.8em;
         }
         .quiz-list {
             list-style: none;
             padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
         .quiz-item {
             background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
+            border-radius: 12px;
+            padding: 25px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .quiz-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
         .quiz-title {
             color: #2c3e50;
-            font-size: 1.2em;
-            margin: 0 0 10px 0;
+            font-size: 1.3em;
+            margin: 0 0 15px 0;
+            font-weight: 600;
         }
         .quiz-category {
             color: #7f8c8d;
             font-size: 0.9em;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            padding: 5px 10px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            display: inline-block;
         }
         .quiz-link {
             display: inline-block;
             background-color: #3498db;
             color: white;
-            padding: 8px 16px;
+            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
         }
         .quiz-link:hover {
             background-color: #2980b9;
+            transform: translateY(-2px);
         }
         .no-quizzes {
             text-align: center;
             color: #7f8c8d;
             font-style: italic;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 768px) {
+            .quiz-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <a href="{% url 'quiz_list' %}" class="logo">
+            <span class="logo-icon">📚</span>Quiz<span>Master</span>
+        </a>
+    </div>
     <h1>Available Quizzes</h1>
     {% if quizzes %}
         <ul class="quiz-list">
