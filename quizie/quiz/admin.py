@@ -1,17 +1,19 @@
 from django.contrib import admin
-from .models import Category, Quiz, Question, Choice
+from .models import Quiz, Question, Choice
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
     extra = 2
 
+class QuestionInline(admin.TabularInline):
+    model = Question
+    extra = 1
+
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
-    list_display = ('text', 'quiz')
 
 class QuizAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'created_at')
+    inlines = [QuestionInline]
 
-admin.site.register(Category)
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Question, QuestionAdmin)
