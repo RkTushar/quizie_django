@@ -5,21 +5,45 @@
     <title>{{ quiz.title }} - Quiz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: #f0f2f5;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #3498db;
+            margin: 0;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .logo span {
+            color: #2c3e50;
+        }
+        .logo-icon {
+            font-size: 1.2em;
+            margin-right: 10px;
         }
         h1 {
-            color: #333;
+            color: #2c3e50;
             text-align: center;
-            margin-bottom: 30px;
+            margin: 20px 0;
+            font-size: 1.8em;
         }
         .quiz-container {
             background: white;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 30px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .question {
@@ -32,42 +56,51 @@
         }
         .question-text {
             color: #2c3e50;
-            font-size: 1.1em;
-            margin-bottom: 15px;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 500;
         }
         .choices {
             list-style: none;
             padding: 0;
         }
         .choice {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .choice label {
             display: block;
-            padding: 10px;
+            padding: 15px;
             background: #f8f9fa;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            border: 2px solid transparent;
         }
         .choice label:hover {
             background: #e9ecef;
+            transform: translateX(5px);
+        }
+        .choice input[type="radio"] {
+            margin-right: 10px;
         }
         .submit-btn {
             display: block;
             width: 200px;
             margin: 30px auto;
-            padding: 12px;
+            padding: 15px;
             background-color: #3498db;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 1.1em;
-            transition: background-color 0.3s;
+            font-weight: 500;
+            transition: all 0.3s;
         }
         .submit-btn:hover {
             background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .back-link {
             display: block;
@@ -75,13 +108,25 @@
             margin-top: 20px;
             color: #7f8c8d;
             text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s;
         }
         .back-link:hover {
             color: #2c3e50;
         }
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <a href="{% url 'quiz_list' %}" class="logo">
+            <span class="logo-icon">📚</span>Quiz<span>Master</span>
+        </a>
+    </div>
     <h1>{{ quiz.title }}</h1>
     <div class="quiz-container">
         <form method="post">
