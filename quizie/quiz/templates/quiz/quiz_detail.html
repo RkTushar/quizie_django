@@ -6,120 +6,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --bg-primary: #f9fafb;
+            --bg-secondary: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f0f2f5;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
         }
+
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+
         .logo {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #3498db;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
             margin: 0;
             text-decoration: none;
             display: inline-block;
+            transition: transform 0.2s ease;
         }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
         .logo span {
-            color: #2c3e50;
+            color: var(--text-primary);
         }
+
         .logo-icon {
             font-size: 1.2em;
-            margin-right: 10px;
+            margin-right: 8px;
         }
+
         h1 {
-            color: #2c3e50;
+            color: var(--text-primary);
             text-align: center;
-            margin: 20px 0;
-            font-size: 1.8em;
+            margin: 1.5rem 0;
+            font-size: 1.75rem;
+            font-weight: 600;
         }
+
         .quiz-container {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+
         .question {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
         }
+
         .question:last-child {
             border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
+
         .question-text {
-            color: #2c3e50;
-            font-size: 1.2em;
-            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            margin-bottom: 1.25rem;
             font-weight: 500;
         }
+
         .choices {
             list-style: none;
             padding: 0;
+            display: grid;
+            gap: 0.75rem;
         }
-        .choice {
-            margin-bottom: 12px;
-        }
+
         .choice label {
             display: block;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            background: var(--bg-primary);
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            border: 2px solid var(--border-color);
+            font-weight: 500;
         }
+
         .choice label:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
+            background: #f3f4f6;
+            border-color: var(--primary);
+            transform: translateX(4px);
         }
+
         .choice input[type="radio"] {
-            margin-right: 10px;
+            margin-right: 12px;
+            accent-color: var(--primary);
         }
+
         .submit-btn {
             display: block;
-            width: 200px;
-            margin: 30px auto;
-            padding: 15px;
-            background-color: #3498db;
+            width: 100%;
+            max-width: 300px;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background-color: var(--primary);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 1.1em;
-            font-weight: 500;
-            transition: all 0.3s;
+            font-size: 1.125rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
+
         .submit-btn:hover {
-            background-color: #2980b9;
+            background-color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
         }
+
         .back-link {
             display: block;
             text-align: center;
-            margin-top: 20px;
-            color: #7f8c8d;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
             text-decoration: none;
-            padding: 10px;
-            transition: color 0.3s;
+            padding: 0.75rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
         }
+
         .back-link:hover {
-            color: #2c3e50;
+            color: var(--primary);
+            transform: translateX(-4px);
         }
+
         @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            
             .quiz-container {
-                padding: 20px;
+                padding: 1.5rem;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.75rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
             }
         }
     </style>
